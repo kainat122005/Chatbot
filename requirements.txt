@@ -1,0 +1,5 @@
+streamlit
+langchain
+qdrant-client
+google-generativeai
+tiktoken
