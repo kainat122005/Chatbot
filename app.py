@@ -13,7 +13,7 @@ Docs2txt-----Word file
 
 from langchain_community import document_loaders
 
-from google.colab import files
+
 from langchain.document_loaders import Docx2txtLoader
 
 uploaded=files.upload()
