@@ -23,8 +23,8 @@ if uploaded_file is not None:
     file_contents = uploaded_file.read().decode("utf-8")
     st.write("File uploaded successfully!")
 
+document_loaders = uploaded_file.name
 
-document_loaders=list(uploaded.keys())[0]
 loaders=CSVLoader("/content/"+document_loaders)
 docs=loaders.load()
 
