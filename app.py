@@ -16,7 +16,11 @@ from langchain_community import document_loaders
 
 from langchain.document_loaders import Docx2txtLoader
 
-uploaded=files.upload()
+uploaded_file = st.file_uploader("Upload a document", type=["txt", "pdf", "csv", "docx"])
+if uploaded_file is not None:
+    file_contents = uploaded_file.read().decode("utf-8")
+    st.write("File uploaded successfully!")
+
 
 document_loaders=list(uploaded.keys())[0]
 loaders=CSVLoader("/content/"+document_loaders)
