@@ -18,19 +18,28 @@ from langchain_community import document_loaders
 
 from langchain.document_loaders import Docx2txtLoader
 
+import streamlit as st
+
+st.title("Docs2txt-----Word file")
+st.subheader("Upload a document")
+
+# Upload the file
 uploaded_file = st.file_uploader("Upload a document", type=["txt", "pdf", "csv", "docx"])
 
+# Check if a file was uploaded
 if uploaded_file is not None:
     document_loaders = uploaded_file.name
-    st.write("File name:", document_loaders)
+    st.success("File uploaded successfully!")
+    st.write("Filename:", document_loaders)
 else:
     st.warning("Please upload a file to continue.")
 
 
-document_loaders = uploaded_file.name
 
-loaders=CSVLoader("/content/"+document_loaders)
-docs=loaders.load()
+    document_loaders = uploaded_file.name
+
+    loaders=CSVLoader("/content/"+document_loaders)
+    docs=loaders.load()
 
 #split
 from langchain.text_splitter import RecursiveCharacterTextSplitter
