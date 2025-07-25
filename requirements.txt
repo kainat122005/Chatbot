@@ -2,4 +2,5 @@ streamlit
 langchain
 qdrant-client
 google-generativeai
-tiktoken
+langchain-google-genai
+langchain-community
