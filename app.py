@@ -20,10 +20,8 @@ if uploaded_file is not None:
     chunks = text_splitter.split_documents(docs)
 
     # Embedding
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
-        google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw"
-    )
+    from langchain.embeddings import HuggingFaceEmbeddings
+    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
     # Qdrant setup
     qdrant_url = "https://fe58f34e-8a11-44b7-bc37-b36c7b67f516.us-west-1-0.aws.cloud.qdrant.io:6333"
