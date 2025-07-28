@@ -1,14 +1,18 @@
-from langchain_community import document_loaders
+import os
+import streamlit as st
 
-from google.colab import files
+
 from langchain.document_loaders import Docx2txtLoader
-from langchain.document_loaders import CSVLoader
 
-uploaded=files.upload()
+uploaded_file=st.file_uploader("Upload the docement here", type="docx")
+if uploaded_file is not None:
 
-document_loaders=list(uploaded.keys())[0]
-loaders=Docx2txtLoader("/content/"+document_loaders)
-docs=loaders.load()
+    with open(uploaded_file.name, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    loader=Docx2txtLoader(uploaded_file.name)
+    docs=loader.load()
+
 
 #split
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -31,7 +35,7 @@ collection_name="hope_cluster"
 
 #Initialize qdrant vector store and embediing the model
 qdrant=QdrantVectorStore.from_documents(
-    docs,
+    chunks,
     embeddings,
     url=qdrant_url,
     api_key=qdrant_api_key,
