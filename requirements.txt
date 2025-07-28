@@ -1,6 +1,7 @@
 streamlit
 langchain
-qdrant-client
-google-generativeai
-langchain-google-genai
 langchain-community
+langchain-google-genai
+docx2txt
+qdrant-client
+
