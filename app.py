@@ -14,33 +14,33 @@ if uploaded_file is not None:
     docs=loader.load()
 
 
-#split
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-text_splitter= RecursiveCharacterTextSplitter(
+    #split
+    from langchain.text_splitter import RecursiveCharacterTextSplitter
+    text_splitter= RecursiveCharacterTextSplitter(
     chunk_size=100,
     chunk_overlap=100
-)
-chunks=text_splitter.split_documents(docs)
+    )
+    chunks=text_splitter.split_documents(docs)
 
-#Embedding
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-embeddings=GoogleGenerativeAIEmbeddings(model="models/embedding-001",google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw")
+    #Embedding
+    from langchain_google_genai import GoogleGenerativeAIEmbeddings
+    embeddings=GoogleGenerativeAIEmbeddings(model="models/embedding-001",google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw")
 
-# Import QdrantVectorStore first
-from langchain_community.vectorstores import Qdrant as QdrantVectorStore
+    # Import QdrantVectorStore first
+    from langchain_community.vectorstores import Qdrant as QdrantVectorStore
 
-qdrant_url = "https://fe58f34e-8a11-44b7-bc37-b36c7b67f516.us-west-1-0.aws.cloud.qdrant.io:6333"
-qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.ZOuPanOWtPTZX6-ixCgGJ-SytMMUBco320lUIenAOgk"
-collection_name="hope_cluster"
+    qdrant_url = "https://fe58f34e-8a11-44b7-bc37-b36c7b67f516.us-west-1-0.aws.cloud.qdrant.io:6333"
+    qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.ZOuPanOWtPTZX6-ixCgGJ-SytMMUBco320lUIenAOgk"
+    collection_name="hope_cluster"
 
-#Initialize qdrant vector store and embediing the model
-qdrant=QdrantVectorStore.from_documents(
-    chunks,
-    embeddings,
-    url=qdrant_url,
-    api_key=qdrant_api_key,
-    collection_name=collection_name
-)
+    #Initialize qdrant vector store and embediing the model
+    qdrant=QdrantVectorStore.from_documents(
+        chunks,
+        embeddings,
+        url=qdrant_url,
+        api_key=qdrant_api_key,
+        collection_name=collection_name
+    )
 
 """# **Retrieval**"""
 
