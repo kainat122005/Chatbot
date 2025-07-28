@@ -45,31 +45,31 @@ if uploaded_file is not None:
 """# **Retrieval**"""
 
 # Commented out IPython magic to ensure Python compatibility.
-# %%writefile chatbot.py
+ %%writefile chatbot.py
 # import streamlit as st
-# st.title("Chatbot")
-# st.subheader("Ask any question from uploaded book or documents.")
-# query=st.text_input("Ask any question")
-# if query:
-#   from langchain_community.vectorstores import Qdrant as QdrantVectorStore
-#   from langchain_google_genai import GoogleGenerativeAIEmbeddings,ChatGoogleGenerativeAI
-#   embeddings=GoogleGenerativeAIEmbeddings(
-#       model="models/embedding-001",google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw"
-#   )
-#   qdrant=QdrantVectorStore.from_documents(
-#     docs,
-#     embeddings,
-#     url=qdrant_url,
-#     api_key=qdrant_api_key,
-#     collection_name=collection_name
-#   )
-#   llm=ChatGoogleGenerativeAI(
-#               model="gemini-1.5-flash",
-#         google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw"
-#   )
-#   from langchain.chains import RetrievalQA
-#   retrieval = qdrant.as_retriever()
-#   qa_chain=RetrievalQA.from_chain_type(llm=llm,retrieval=retrieval)
-#   result=qa_chain.run(query)
-#   st.write(result)
+st.title("Chatbot")
+st.subheader("Ask any question from uploaded book or documents.")
+query=st.text_input("Ask any question")
+if query:
+from langchain_community.vectorstores import Qdrant as QdrantVectorStore
+from langchain_google_genai import GoogleGenerativeAIEmbeddings,ChatGoogleGenerativeAI
+embeddings=GoogleGenerativeAIEmbeddings(
+          model="models/embedding-001",google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw"
+   )
+qdrant=QdrantVectorStore.from_documents(
+     docs,
+     embeddings,
+     url=qdrant_url,
+     api_key=qdrant_api_key,
+     collection_name=collection_name
+   )
+   llm=ChatGoogleGenerativeAI(
+               model="gemini-1.5-flash",
+         google_api_key="AIzaSyAaI6cEtck9zu9Vb0UphPTez2BkFRzFXdw"
+   )
+   from langchain.chains import RetrievalQA
+   retrieval = qdrant.as_retriever()
+   qa_chain=RetrievalQA.from_chain_type(llm=llm,retrieval=retrieval)
+   result=qa_chain.run(query)
+   st.write(result)
 
