@@ -26,14 +26,15 @@ if uploaded_file is not None:
     # Qdrant setup
     qdrant_url = "https://fe58f34e-8a11-44b7-bc37-b36c7b67f516.us-west-1-0.aws.cloud.qdrant.io:6333"
     qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.ZOuPanOWtPTZX6-ixCgGJ-SytMMUBco320lUIenAOgk"
-    collection_name = "hope_cluster"
+    collection_name = "hope_cluster_v2"
 
     qdrant = QdrantVectorStore.from_documents(
         chunks,
         embeddings,
         url=qdrant_url,
         api_key=qdrant_api_key,
-        collection_name=collection_name
+        collection_name=collection_name,
+        recreate_collection=True 
     )
 
     # Retrievel
