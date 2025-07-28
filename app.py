@@ -4,6 +4,8 @@ from langchain.document_loaders import Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_community.vectorstores import Qdrant as QdrantVectorStore
+from qdrant_client import QdrantClient
+
 from langchain.chains import RetrievalQA
 
 # File upload
@@ -27,6 +29,10 @@ if uploaded_file is not None:
     qdrant_url = "https://fe58f34e-8a11-44b7-bc37-b36c7b67f516.us-west-1-0.aws.cloud.qdrant.io:6333"
     qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.ZOuPanOWtPTZX6-ixCgGJ-SytMMUBco320lUIenAOgk"
     collection_name = "hope_cluster_v2"
+    qdrant_client = QdrantClient(
+        url=qdrant_url,
+        api_key=qdrant_api_key,
+    )
 
     qdrant = QdrantVectorStore.from_documents(
         chunks,
