@@ -45,7 +45,7 @@ if uploaded_file is not None:
 """# **Retrieval**"""
 
 # Commented out IPython magic to ensure Python compatibility.
- %%writefile chatbot.py
+ 
 # import streamlit as st
 st.title("Chatbot")
 st.subheader("Ask any question from uploaded book or documents.")
